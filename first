@@ -1,0 +1,12 @@
+f = open("/home/rameshk/Desktop/tt.txt","w")
+for i in range(20,0,-1):
+    if(i==7):
+        continue
+    f.write(str(i) + "\n")
+
+
+for k in range(0,10):
+    if(k==9):
+        break
+    f.write(str(k) + "\n")
+f.close()

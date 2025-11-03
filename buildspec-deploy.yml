@@ -1,0 +1,18 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - yum install -y awscli jq
+  build:
+    commands:
+      - echo "Deploying to EC2..."
+      - aws s3 cp s3://your-artifact-bucket/BuildOutput/artifact.zip /tmp/artifact.zip
+      - aws ec2 describe-instances --filters "Name=tag:Environment,Values=Production" \
+          --query "Reservations[].Instances[].PublicIpAddress" --output text > ec2_ips.txt
+      - for ip in $(cat ec2_ips.txt); do
+            echo "Deploying to $ip"
+            scp -o StrictHostKeyChecking=no -i your-key.pem /tmp/artifact.zip ec2-user@$ip:/tmp/artifact.tar.gz
+            ssh -o StrictHostKeyChecking=no -i your-key.pem ec2-user@$ip 'bash -s' < scripts/deploy_new_version.sh
+        done
+artifacts:
+  files: []

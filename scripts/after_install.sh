@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
-echo "Copying files to /var/www/html/releases/new ..."
-rsync -av  /var/www/html/ .
+echo "Restarting web server..."
+sudo systemctl restart apache2 
 
+echo "Deployment completed successfully!"

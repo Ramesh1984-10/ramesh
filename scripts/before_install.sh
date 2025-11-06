@@ -1,5 +1,9 @@
 #!/bin/bash
 set -e
 
-echo "Preparing deployment directories..."
-sudo rm -rf  /var/www/html/releases/new
+echo "Starting deployment using rsync..."
+
+# Sync current directory contents to /var/www/html
+sudo rsync -av --delete ./ /var/www/html/
+
+echo "Deployment completed successfully!"

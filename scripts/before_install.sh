@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
 
-echo "Cleaning up old 'latest' folder..."
-rm -rf /var/www/html/releases/latest
-mkdir -p /var/www/html/releases/latest
+echo "Preparing deployment directories..."
+sudo mkdir -p /var/www/html/releases/new
+sudo chown -R ubuntu:ubuntu /var/www/html

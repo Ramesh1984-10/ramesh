@@ -2,10 +2,4 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /var/www/html
-hooks:
-
-  AfterInstall:
-    - location: scripts/after_install.sh
-      timeout: 300
-      runas: ubuntu
+    destination: /var/www/html/

@@ -1,6 +1,5 @@
 #!/bin/bash
 set -e
 
-echo "Extracting files..."
-# Files are already copied to /var/www/html/releases/latest by CodeDeploy
-chown -R ubuntu:ubuntu /var/www/html/releases/latest
+echo "Copying files to /var/www/html/releases/new ..."
+rsync -av --delete /var/www/html/releases/new/ /var/www/html/releases/latest/

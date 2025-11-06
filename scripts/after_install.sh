@@ -2,5 +2,5 @@
 set -e
 
 echo "Copying files to /var/www/html/releases/new ..."
-rsync -av --delete /var/www/html/ .
+rsync -av  /var/www/html/ .
 
